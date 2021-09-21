@@ -1,0 +1,66 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "title": "BMI index around the world in 2010",
+  "width": 800,
+  "height": 600,
+  "data": {
+      "url": "https://raw.githubusercontent.com/Vulleyball/data_1/main/final_map.json",
+      "format": {
+          "type": "topojson",
+          "feature": "final"
+      }
+  },
+  "transform": [
+
+      {
+          "lookup": "properties.name_long",
+          "from": {
+              "data": {
+                  "url": "https://raw.githubusercontent.com/Vulleyball/data_1/main/data.csv"
+              },
+              "key": "Country",
+              "fields": ["BMI ", "Year", "Country"]
+
+
+          }
+
+      },
+
+      {
+          "filter": "datum['BMI '] > 0"
+      },
+      {
+          "calculate": "datum['BMI '] +0.1",
+          "as": "BMI"
+      }
+
+  ],
+  
+  "projection": {
+      "type": "mercator"
+  },
+  "mark": {
+      "type": "geoshape"
+  },
+  "encoding": {
+      "color": {
+          "field": "BMI ",
+          "type": "quantitative",
+          "scale": {
+              "type": "threshold",
+              "domain": [10, 20, 30, 40, 50]
+          }
+      },
+      "tooltip": [{
+              "field": "properties.name_long",
+              "type": "nominal",
+              "title": "Country"
+          },
+          {
+              "title": "BMI index",
+              "field": "BMI ",
+              "type": "quantitative"
+          }
+      ]
+  }
+}
