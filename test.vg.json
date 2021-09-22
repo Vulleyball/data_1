@@ -10,7 +10,21 @@
           "feature": "final"
       }
   },
-  "transform": [
+  "layer":[
+    
+    {
+      "transform": [
+        {"calculate": "'Data is not available in ' + datum.properties.name_long", "as": "note"}
+      ],
+      "mark": {"type": "geoshape", "fill": "lightgray", "stroke": "white"},
+      "encoding": {
+        "tooltip": {
+          "field": "note"
+        }
+      }
+    },
+  {
+    "transform": [
 
       {
           "lookup": "properties.name_long",
@@ -30,7 +44,7 @@
           "filter": "datum['BMI '] > 0"
       },
       {
-          "calculate": "datum['BMI '] +0.1",
+          "calculate": "datum['BMI '] +0.05",
           "as": "BMI"
       }
 
@@ -40,7 +54,7 @@
       "type": "mercator"
   },
   "mark": {
-      "type": "geoshape"
+      "type": "geoshape", "stroke": "white"
   },
   "encoding": {
       "color": {
@@ -63,4 +77,11 @@
           }
       ]
   }
+  }
+],
+"config": {
+
+  "background": "#F3FAF9"
+ 
+ }
 }
