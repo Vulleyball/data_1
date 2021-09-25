@@ -1,7 +1,7 @@
 {
   "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
   "title": {
-    "text": "Life expectancy around the world in 2010",
+    "text": "Average life expectancy around the world in 2010",
     "fontSize": 20,
     "font": "Lato"},
   "width": 800,
