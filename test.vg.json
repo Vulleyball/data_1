@@ -1,6 +1,9 @@
 {
   "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
-  "title": "BMI index around the world in 2010",
+  "title": {
+    "text": "Life expectancy around the world in 2010",
+    "fontSize": 20,
+    "font": "Lato"},
   "width": 800,
   "height": 600,
   "data": {
@@ -33,7 +36,7 @@
                   "url": "https://raw.githubusercontent.com/Vulleyball/data_1/main/data.csv"
               },
               "key": "Country",
-              "fields": ["BMI ", "Year", "Country"]
+              "fields": ["Life expectancy", "Year", "Country"]
 
 
           }
@@ -41,11 +44,11 @@
       },
 
       {
-          "filter": "datum['BMI '] > 0"
+          "filter": "datum['Life expectancy'] > 0"
       },
       {
-          "calculate": "datum['BMI '] +0.05",
-          "as": "BMI"
+          "calculate": "datum['Life expectancy'] +0.05",
+          "as": "Life_expectancy"
       }
 
   ],
@@ -58,11 +61,11 @@
   },
   "encoding": {
       "color": {
-          "field": "BMI ",
+          "field": "Life expectancy",
           "type": "quantitative",
           "scale": {
               "type": "threshold",
-              "domain": [10, 20, 30, 40, 50]
+              "domain": [55,65,75,85]
           }
       },
       "tooltip": [{
@@ -71,8 +74,8 @@
               "title": "Country"
           },
           {
-              "title": "BMI index",
-              "field": "BMI ",
+              "title": "Life expectancy",
+              "field": "Life expectancy",
               "type": "quantitative"
           }
       ]
